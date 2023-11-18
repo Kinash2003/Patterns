@@ -1,0 +1,408 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Random;
+
+public class GameField extends JPanel implements ActionListener{
+	private final int LENGTH = 450;
+    private final int HEIGHT = 338;
+    private final int DOT_SIZE = 16;
+    private final int ALL_DOTS = 400;
+    private final int ALL_DOTS2 = 400;
+    private Image background;
+    private Image dot;
+    private Image dot2;
+    private Image head;
+    private Image head2;
+    private Image headb;
+    private Image head2b;
+    private Image headc;
+    private Image head2c;
+    private Image headd;
+    private Image head2d;
+    private Image tail;
+    private Image tail2;
+    private Image tailb;
+    private Image tail2b;
+    private Image tailc;
+    private Image tail2c;
+    private Image taild;
+    private Image tail2d;
+    private Image apple;
+    private Image apple2;
+    private Image apple3;
+    private int appleX;
+    private int appleX2;
+    private int appleX3;
+    private int appleY;
+    private int appleY2;
+    private int appleY3;
+    private int[] x = new int[ALL_DOTS];
+    private int[] y = new int[ALL_DOTS];
+    private int[] a = new int[ALL_DOTS2];
+    private int[] b = new int[ALL_DOTS2];
+    private int dots;
+    private int dots2;
+    private Timer timer;
+    private boolean left = true;
+    private boolean right = false;
+    private boolean up = false;
+    private boolean down = false;
+    private boolean left2 = false;
+    private boolean right2 = true;
+    private boolean up2 = false;
+    private boolean down2 = false;
+    private boolean inGame = true;
+    private boolean inGame2 = true;
+    private String str = "Game Over";
+
+
+    public GameField(){
+        setBackground(Color.black);
+        loadImages();
+        initGame();
+        addKeyListener(new FieldKeyListener());
+        setFocusable(true);
+
+    }
+
+    public void initGame(){
+        dots = 3;
+        dots2 = 3;
+        for (int i = 0; i < dots; i++) {
+        	x[i] = 384 + i*DOT_SIZE;
+            y[i] = 272;
+        }
+        for (int j = 0; j < dots2; j++) {
+            a[j] = 32 - j*DOT_SIZE;
+            b[j] = 32;
+        }
+        timer = new Timer(250,this);
+        timer.start();
+        createApple();
+        createApple2();
+        createApple3();
+    }
+
+    public void createApple(){
+        appleX = new Random().nextInt(20)*DOT_SIZE;
+        appleY = new Random().nextInt(20)*DOT_SIZE;
+    }
+    
+    public void createApple2(){
+        appleX2 = new Random().nextInt(20)*DOT_SIZE;
+        appleY2 = new Random().nextInt(20)*DOT_SIZE;
+    }
+    
+    public void createApple3(){
+        appleX3 = new Random().nextInt(20)*DOT_SIZE;
+        appleY3 = new Random().nextInt(20)*DOT_SIZE;
+    }
+
+    public void loadImages(){
+    	ImageIcon bg = new ImageIcon("images\\grass.jpg");
+        background = bg.getImage();
+        ImageIcon iia = new ImageIcon("images\\apple1.png");
+        apple = iia.getImage();
+        ImageIcon iia2 = new ImageIcon("images\\apple1.png");
+        apple2 = iia2.getImage();
+        ImageIcon iia3 = new ImageIcon("images\\apple1.png");
+        apple3 = iia3.getImage();
+        ImageIcon iid = new ImageIcon("images\\snake.png");
+        dot = iid.getImage();
+        ImageIcon iid2 = new ImageIcon("images\\snake2.png");
+        dot2 = iid2.getImage();
+        ImageIcon iih = new ImageIcon("images\\snakeH.png");
+        head = iih.getImage();
+        ImageIcon iihb = new ImageIcon("images\\snakeH 90.png");
+        headb = iihb.getImage();
+        ImageIcon iihc = new ImageIcon("images\\snakeH 180.png");
+        headc = iihc.getImage();
+        ImageIcon iihd = new ImageIcon("images\\snakeH 270.png");
+        headd = iihd.getImage();
+        ImageIcon iih2 = new ImageIcon("images\\snakeH2.png");
+        head2 = iih2.getImage();
+        ImageIcon iih2b = new ImageIcon("images\\snakeH2 90.png");
+        head2b = iih2b.getImage();
+        ImageIcon iih2c = new ImageIcon("images\\snakeH2 180.png");
+        head2c = iih2c.getImage();
+        ImageIcon iih2d = new ImageIcon("images\\snakeH2 270.png");
+        head2d = iih2d.getImage();
+        ImageIcon iit = new ImageIcon("images\\snakeT.png");
+        tail = iit.getImage();
+        ImageIcon iitb = new ImageIcon("images\\snakeT 90.png");
+        tailb = iitb.getImage();
+        ImageIcon iitc = new ImageIcon("images\\snakeT 180.png");
+        tailc = iitc.getImage();
+        ImageIcon iitd = new ImageIcon("images\\snakeT 270.png");
+        taild = iitd.getImage();
+        ImageIcon iit2 = new ImageIcon("images\\snakeT2.png");
+        tail2 = iit2.getImage();
+        ImageIcon iit2b = new ImageIcon("images\\snakeT2 90.png");
+        tail2b = iit2b.getImage();
+        ImageIcon iit2c = new ImageIcon("images\\snakeT2 180.png");
+        tail2c = iit2c.getImage();
+        ImageIcon iit2d = new ImageIcon("images\\snakeT2 270.png");
+        tail2d = iit2d.getImage();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if(inGame){
+        	g.drawImage(background,0,0,this);
+            g.drawImage(apple,appleX,appleY,this);
+            g.drawImage(apple2,appleX2,appleY2,this);
+            g.drawImage(apple3,appleX3,appleY3,this);
+            for (int i = 0; i < dots; i++) {
+            	if(i==0) {
+            		if(left){
+            			g.drawImage(headd,x[i],y[i],this);
+            		}
+            		if(right){
+            			g.drawImage(headb,x[i],y[i],this);
+            		}
+            		if(up){
+            			g.drawImage(head,x[i],y[i],this);
+            		}
+            		if(down){
+            			g.drawImage(headc,x[i],y[i],this);
+            		}
+            	}
+            	else if(i==dots-1) {
+            		if(left){
+            			g.drawImage(taild,x[i],y[i],this);
+            		}
+            		if(right){
+            			g.drawImage(tailb,x[i],y[i],this);
+            		}
+            		if(up){
+            			g.drawImage(tail,x[i],y[i],this);
+            		}
+            		if(down){
+            			g.drawImage(tailc,x[i],y[i],this);
+            		}
+            	}
+            	else g.drawImage(dot,x[i],y[i],this);
+            }
+        } else{
+        	if(inGame2) {
+        		inGame2=false;
+            	str = "Blue snake won";
+        	}
+            g.setColor(Color.white);
+            g.drawString(str,170,HEIGHT/2);
+        }
+        if(inGame2){
+        	for (int j = 0; j < dots2; j++) {
+            	if(j==0) {
+            		if(left2){
+            			g.drawImage(head2d,a[j],b[j],this);
+            		}
+            		if(right2){
+            			g.drawImage(head2b,a[j],b[j],this);
+            		}
+            		if(up2){
+            			g.drawImage(head2,a[j],b[j],this);
+            		}
+            		if(down2){
+            			g.drawImage(head2c,a[j],b[j],this);
+            		}
+            	}
+            	else if(j==dots2-1) {
+            		if(left2){
+            			g.drawImage(tail2d,a[j],b[j],this);
+            		}
+            		if(right2){
+            			g.drawImage(tail2b,a[j],b[j],this);
+            		}
+            		if(up2){
+            			g.drawImage(tail2,a[j],b[j],this);
+            		}
+            		if(down2){
+            			g.drawImage(tail2c,a[j],b[j],this);
+            		}
+            	}
+            	else g.drawImage(dot2,a[j],b[j],this);
+            }
+        } else{
+        	if(inGame) {
+        		inGame=false;
+            	str = "Yellow snake won";
+        	}
+            g.setColor(Color.white);
+            g.drawString(str,170,HEIGHT/2);
+        }
+    }
+
+    public void move(){
+        for (int i = dots; i > 0; i--) {
+            x[i] = x[i-1];
+            y[i] = y[i-1];
+        }
+        if(left){
+            x[0] -= DOT_SIZE;
+        }
+        if(right){
+            x[0] += DOT_SIZE;
+        } if(up){
+            y[0] -= DOT_SIZE;
+        } if(down){
+            y[0] += DOT_SIZE;
+        }
+    }
+    
+    public void move2(){
+        for (int j = dots2; j > 0; j--) {
+            a[j] = a[j-1];
+            b[j] = b[j-1];
+        }
+        if(left2){
+            a[0] -= DOT_SIZE;
+        }
+        if(right2){
+            a[0] += DOT_SIZE;
+        } if(up2){
+            b[0] -= DOT_SIZE;
+        } if(down2){
+            b[0] += DOT_SIZE;
+        }
+    }
+
+    public void checkApples(){
+        if(x[0] == appleX && y[0] == appleY){
+            dots++;
+            createApple();
+        }
+        if(x[0] == appleX2 && y[0] == appleY2){
+            dots++;
+            createApple2();
+        }
+        if(x[0] == appleX3 && y[0] == appleY3){
+            dots++;
+            createApple3();
+        }
+        if(a[0] == appleX && b[0] == appleY){
+            dots2++;
+            createApple();
+        }
+        if(a[0] == appleX2 && b[0] == appleY2){
+            dots2++;
+            createApple2();
+        }
+        if(a[0] == appleX3 && b[0] == appleY3){
+            dots2++;
+            createApple3();
+        }
+    }
+
+    public void checkCollisions(){
+        for (int i = dots; i >0 ; i--) {
+            if(i>4 && x[0] == x[i] && y[0] == y[i]){
+                inGame = false;
+            }
+        }
+
+        if(x[0]>LENGTH){
+            inGame = false;
+        }
+        if(x[0]<0){
+            inGame = false;
+        }
+        if(y[0]>HEIGHT){
+            inGame = false;
+        }
+        if(y[0]<0){
+            inGame = false;
+        }
+    }
+    
+    public void checkCollisions2(){
+        for (int j = dots2; j >0 ; j--) {
+            if(j>4 && a[0] == a[j] && b[0] == b[j]){
+                inGame2 = false;
+            }
+        }
+
+        if(a[0]>LENGTH){
+            inGame2 = false;
+        }
+        if(a[0]<0){
+            inGame2 = false;
+        }
+        if(b[0]>HEIGHT){
+            inGame2 = false;
+        }
+        if(b[0]<0){
+            inGame2 = false;
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(inGame){
+            checkApples();
+            checkCollisions();
+            move();
+        }
+        if(inGame2){
+            checkApples();
+            checkCollisions2();
+            move2();
+        }
+        repaint();
+    }
+
+    class FieldKeyListener extends KeyAdapter{
+        @Override
+        public void keyPressed(KeyEvent e) {
+            super.keyPressed(e);
+            int key = e.getKeyCode();
+            if(key == KeyEvent.VK_LEFT && !right){
+                left = true;
+                up = false;
+                down = false;
+            }
+            if(key == KeyEvent.VK_RIGHT && !left){
+                right = true;
+                up = false;
+                down = false;
+            }
+
+            if(key == KeyEvent.VK_UP && !down){
+                right = false;
+                up = true;
+                left = false;
+            }
+            if(key == KeyEvent.VK_DOWN && !up){
+                right = false;
+                down = true;
+                left = false;
+            }
+            if(key == KeyEvent.VK_A && !right2){
+                left2 = true;
+                up2 = false;
+                down2 = false;
+            }
+            if(key == KeyEvent.VK_D && !left2){
+                right2 = true;
+                up2 = false;
+                down2 = false;
+            }
+
+            if(key == KeyEvent.VK_W && !down2){
+                right2 = false;
+                up2 = true;
+                left2 = false;
+            }
+            if(key == KeyEvent.VK_S && !up2){
+                right2 = false;
+                down2 = true;
+                left2 = false;
+            }
+        }
+    }
+}

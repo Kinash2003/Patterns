@@ -1,0 +1,587 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.Random;
+
+public class GameField11 extends JPanel implements ActionListener {
+    private final int LENGTH = 1400;
+    private final int HEIGHT = 800;
+    private final int DOT_SIZE = 16;
+    private final int ALL_DOTS = 400;
+    private final int ALL_DOTS2 = 400;
+    private Image background;
+    private Image dot;
+    private Image dot2;
+    private Image head;
+    private Image head2;
+    private Image headb;
+    private Image head2b;
+    private Image headc;
+    private Image head2c;
+    private Image headd;
+    private Image head2d;
+    private Image tail;
+    private Image tail2;
+    private Image tailb;
+    private Image tail2b;
+    private Image tailc;
+    private Image tail2c;
+    private Image taild;
+    private Image tail2d;
+    private Image melon;
+    private Image melon2;
+    private Image melon3;
+    private Image melon4;
+    private Image melon5;
+    private Image melon6;
+    private Image melon7;
+    private Image melon8;
+    private Image melon9;
+    private Image melon10;
+    private Image melon11;
+    private Image melon12;
+    private int melonX;
+    private int melonX2;
+    private int melonX3;
+    private int melonX4;
+    private int melonX5;
+    private int melonX6;
+    private int melonX7;
+    private int melonX8;
+    private int melonX9;
+    private int melonX10;
+    private int melonX11;
+    private int melonX12;
+    private int melonY;
+    private int melonY2;
+    private int melonY3;
+    private int melonY4;
+    private int melonY5;
+    private int melonY6;
+    private int melonY7;
+    private int melonY8;
+    private int melonY9;
+    private int melonY10;
+    private int melonY11;
+    private int melonY12;
+    private int[] x = new int[ALL_DOTS];
+    private int[] y = new int[ALL_DOTS];
+    private int[] a = new int[ALL_DOTS2];
+    private int[] b = new int[ALL_DOTS2];
+    private int dots;
+    private int dots2;
+    private Timer timer;
+    private boolean left = true;
+    private boolean right = false;
+    private boolean up = false;
+    private boolean down = false;
+    private boolean left2 = false;
+    private boolean right2 = true;
+    private boolean up2 = false;
+    private boolean down2 = false;
+    private boolean inGame = true;
+    private boolean inGame2 = true;
+    private String str = "Game Over";
+
+
+    public GameField11() {
+        setBackground(Color.black);
+        loadImages();
+        initGame();
+        addKeyListener(new FieldKeyListener());
+        setFocusable(true);
+
+    }
+
+    public void initGame() {
+        dots = 3;
+        dots2 = 3;
+        for (int i = 0; i < dots; i++) {
+            x[i] = 1328 + i * DOT_SIZE;
+            y[i] = 736;
+        }
+        for (int j = 0; j < dots2; j++) {
+            a[j] = 32 - j * DOT_SIZE;
+            b[j] = 32;
+        }
+        timer = new Timer(250, this);
+        timer.start();
+        createMelon();
+        createMelon2();
+        createMelon3();
+        createMelon4();
+        createMelon5();
+        createMelon6();
+        createMelon7();
+        createMelon8();
+        createMelon9();
+        createMelon10();
+        createMelon11();
+        createMelon12();
+    }
+
+    public void createMelon() {
+        melonX = new Random().nextInt(86) * DOT_SIZE;
+        melonY = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon2() {
+        melonX2 = new Random().nextInt(86) * DOT_SIZE;
+        melonY2 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon3() {
+        melonX3 = new Random().nextInt(86) * DOT_SIZE;
+        melonY3 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon4() {
+        melonX4 = new Random().nextInt(86) * DOT_SIZE;
+        melonY4 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon5() {
+        melonX5 = new Random().nextInt(86) * DOT_SIZE;
+        melonY5 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon6() {
+        melonX6 = new Random().nextInt(86) * DOT_SIZE;
+        melonY6 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon7() {
+        melonX7 = new Random().nextInt(86) * DOT_SIZE;
+        melonY7 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon8() {
+        melonX8 = new Random().nextInt(86) * DOT_SIZE;
+        melonY8 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon9() {
+        melonX9 = new Random().nextInt(86) * DOT_SIZE;
+        melonY9 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon10() {
+        melonX10 = new Random().nextInt(86) * DOT_SIZE;
+        melonY10 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon11() {
+        melonX11 = new Random().nextInt(86) * DOT_SIZE;
+        melonY11 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void createMelon12() {
+        melonX12 = new Random().nextInt(86) * DOT_SIZE;
+        melonY12 = new Random().nextInt(49) * DOT_SIZE;
+    }
+
+    public void loadImages() {
+        ImageIcon bg = new ImageIcon("grass4.jpg");
+        background = bg.getImage();
+        ImageIcon iim = new ImageIcon("watermelon.png");
+        melon = iim.getImage();
+        ImageIcon iim2 = new ImageIcon("watermelon.png");
+        melon2 = iim2.getImage();
+        ImageIcon iim3 = new ImageIcon("watermelon.png");
+        melon3 = iim3.getImage();
+        ImageIcon iim4 = new ImageIcon("watermelon.png");
+        melon4 = iim4.getImage();
+        ImageIcon iim5 = new ImageIcon("watermelon.png");
+        melon5 = iim5.getImage();
+        ImageIcon iim6 = new ImageIcon("watermelon.png");
+        melon6 = iim6.getImage();
+        ImageIcon iim7 = new ImageIcon("watermelon.png");
+        melon7 = iim7.getImage();
+        ImageIcon iim8 = new ImageIcon("watermelon.png");
+        melon8 = iim8.getImage();
+        ImageIcon iim9 = new ImageIcon("watermelon.png");
+        melon9 = iim9.getImage();
+        ImageIcon iim10 = new ImageIcon("watermelon.png");
+        melon10 = iim10.getImage();
+        ImageIcon iim11 = new ImageIcon("watermelon.png");
+        melon11 = iim11.getImage();
+        ImageIcon iim12 = new ImageIcon("watermelon.png");
+        melon12 = iim12.getImage();
+        ImageIcon iid = new ImageIcon("snake.png");
+        dot = iid.getImage();
+        ImageIcon iid2 = new ImageIcon("snake2.png");
+        dot2 = iid2.getImage();
+        ImageIcon iih = new ImageIcon("snakeH.png");
+        head = iih.getImage();
+        ImageIcon iihb = new ImageIcon("snakeH 90.png");
+        headb = iihb.getImage();
+        ImageIcon iihc = new ImageIcon("snakeH 180.png");
+        headc = iihc.getImage();
+        ImageIcon iihd = new ImageIcon("snakeH 270.png");
+        headd = iihd.getImage();
+        ImageIcon iih2 = new ImageIcon("snakeH2.png");
+        head2 = iih2.getImage();
+        ImageIcon iih2b = new ImageIcon("snakeH2 90.png");
+        head2b = iih2b.getImage();
+        ImageIcon iih2c = new ImageIcon("snakeH2 180.png");
+        head2c = iih2c.getImage();
+        ImageIcon iih2d = new ImageIcon("snakeH2 270.png");
+        head2d = iih2d.getImage();
+        ImageIcon iit = new ImageIcon("snakeT.png");
+        tail = iit.getImage();
+        ImageIcon iitb = new ImageIcon("snakeT 90.png");
+        tailb = iitb.getImage();
+        ImageIcon iitc = new ImageIcon("snakeT 180.png");
+        tailc = iitc.getImage();
+        ImageIcon iitd = new ImageIcon("snakeT 270.png");
+        taild = iitd.getImage();
+        ImageIcon iit2 = new ImageIcon("snakeT2.png");
+        tail2 = iit2.getImage();
+        ImageIcon iit2b = new ImageIcon("snakeT2 90.png");
+        tail2b = iit2b.getImage();
+        ImageIcon iit2c = new ImageIcon("snakeT2 180.png");
+        tail2c = iit2c.getImage();
+        ImageIcon iit2d = new ImageIcon("snakeT2 270.png");
+        tail2d = iit2d.getImage();
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (inGame) {
+            g.drawImage(background, 0, 0, this);
+            g.drawImage(melon, melonX, melonY, this);
+            g.drawImage(melon2, melonX2, melonY2, this);
+            g.drawImage(melon3, melonX3, melonY3, this);
+            g.drawImage(melon4, melonX4, melonY4, this);
+            g.drawImage(melon5, melonX5, melonY5, this);
+            g.drawImage(melon6, melonX6, melonY6, this);
+            g.drawImage(melon7, melonX7, melonY7, this);
+            g.drawImage(melon8, melonX8, melonY8, this);
+            g.drawImage(melon9, melonX9, melonY9, this);
+            g.drawImage(melon10, melonX10, melonY10, this);
+            g.drawImage(melon11, melonX11, melonY11, this);
+            g.drawImage(melon12, melonX12, melonY12, this);
+            for (int i = 0; i < dots; i++) {
+                if (i == 0) {
+                    if (left) {
+                        g.drawImage(headd, x[i], y[i], this);
+                    }
+                    if (right) {
+                        g.drawImage(headb, x[i], y[i], this);
+                    }
+                    if (up) {
+                        g.drawImage(head, x[i], y[i], this);
+                    }
+                    if (down) {
+                        g.drawImage(headc, x[i], y[i], this);
+                    }
+                } else if (i == dots - 1) {
+                    if (left) {
+                        g.drawImage(taild, x[i], y[i], this);
+                    }
+                    if (right) {
+                        g.drawImage(tailb, x[i], y[i], this);
+                    }
+                    if (up) {
+                        g.drawImage(tail, x[i], y[i], this);
+                    }
+                    if (down) {
+                        g.drawImage(tailc, x[i], y[i], this);
+                    }
+                } else g.drawImage(dot, x[i], y[i], this);
+            }
+        } else {
+            if (inGame2) {
+                inGame2 = false;
+                str = "Blue snake won";
+            }
+            g.setColor(Color.white);
+            g.drawString(str, 650, HEIGHT / 2);
+        }
+        if (inGame2) {
+            for (int j = 0; j < dots2; j++) {
+                if (j == 0) {
+                    if (left2) {
+                        g.drawImage(head2d, a[j], b[j], this);
+                    }
+                    if (right2) {
+                        g.drawImage(head2b, a[j], b[j], this);
+                    }
+                    if (up2) {
+                        g.drawImage(head2, a[j], b[j], this);
+                    }
+                    if (down2) {
+                        g.drawImage(head2c, a[j], b[j], this);
+                    }
+                } else if (j == dots2 - 1) {
+                    if (left2) {
+                        g.drawImage(tail2d, a[j], b[j], this);
+                    }
+                    if (right2) {
+                        g.drawImage(tail2b, a[j], b[j], this);
+                    }
+                    if (up2) {
+                        g.drawImage(tail2, a[j], b[j], this);
+                    }
+                    if (down2) {
+                        g.drawImage(tail2c, a[j], b[j], this);
+                    }
+                } else g.drawImage(dot2, a[j], b[j], this);
+            }
+        } else {
+            if (inGame) {
+                inGame = false;
+                str = "Yellow snake won";
+            }
+            g.setColor(Color.white);
+            g.drawString(str, 650, HEIGHT / 2);
+        }
+    }
+
+    public void move() {
+        for (int i = dots; i > 0; i--) {
+            x[i] = x[i - 1];
+            y[i] = y[i - 1];
+        }
+        if (left) {
+            x[0] -= DOT_SIZE;
+        }
+        if (right) {
+            x[0] += DOT_SIZE;
+        }
+        if (up) {
+            y[0] -= DOT_SIZE;
+        }
+        if (down) {
+            y[0] += DOT_SIZE;
+        }
+    }
+
+    public void move2() {
+        for (int j = dots2; j > 0; j--) {
+            a[j] = a[j - 1];
+            b[j] = b[j - 1];
+        }
+        if (left2) {
+            a[0] -= DOT_SIZE;
+        }
+        if (right2) {
+            a[0] += DOT_SIZE;
+        }
+        if (up2) {
+            b[0] -= DOT_SIZE;
+        }
+        if (down2) {
+            b[0] += DOT_SIZE;
+        }
+    }
+
+    public void checkMelons() {
+        if (x[0] == melonX && y[0] == melonY) {
+            dots++;
+            createMelon();
+        }
+        if (x[0] == melonX2 && y[0] == melonY2) {
+            dots++;
+            createMelon2();
+        }
+        if (x[0] == melonX3 && y[0] == melonY3) {
+            dots++;
+            createMelon3();
+        }
+        if (x[0] == melonX4 && y[0] == melonY4) {
+            dots++;
+            createMelon4();
+        }
+        if (x[0] == melonX5 && y[0] == melonY5) {
+            dots++;
+            createMelon5();
+        }
+        if (x[0] == melonX6 && y[0] == melonY6) {
+            dots++;
+            createMelon6();
+        }
+        if (x[0] == melonX7 && y[0] == melonY7) {
+            dots++;
+            createMelon7();
+        }
+        if (x[0] == melonX8 && y[0] == melonY8) {
+            dots++;
+            createMelon8();
+        }
+        if (x[0] == melonX9 && y[0] == melonY9) {
+            dots++;
+            createMelon9();
+        }
+        if (x[0] == melonX10 && y[0] == melonY10) {
+            dots++;
+            createMelon10();
+        }
+        if (x[0] == melonX11 && y[0] == melonY11) {
+            dots++;
+            createMelon11();
+        }
+        if (x[0] == melonX12 && y[0] == melonY12) {
+            dots++;
+            createMelon12();
+        }
+
+        if (a[0] == melonX && b[0] == melonY) {
+            dots2++;
+            createMelon();
+        }
+        if (a[0] == melonX2 && b[0] == melonY2) {
+            dots2++;
+            createMelon2();
+        }
+        if (a[0] == melonX3 && b[0] == melonY3) {
+            dots2++;
+            createMelon3();
+        }
+        if (a[0] == melonX4 && b[0] == melonY4) {
+            dots2++;
+            createMelon4();
+        }
+        if (a[0] == melonX5 && b[0] == melonY5) {
+            dots2++;
+            createMelon5();
+        }
+        if (a[0] == melonX6 && b[0] == melonY6) {
+            dots2++;
+            createMelon6();
+        }
+        if (a[0] == melonX7 && b[0] == melonY7) {
+            dots2++;
+            createMelon7();
+        }
+        if (a[0] == melonX8 && b[0] == melonY8) {
+            dots2++;
+            createMelon8();
+        }
+        if (a[0] == melonX9 && b[0] == melonY9) {
+            dots2++;
+            createMelon9();
+        }
+        if (a[0] == melonX10 && b[0] == melonY10) {
+            dots2++;
+            createMelon10();
+        }
+        if (a[0] == melonX11 && b[0] == melonY11) {
+            dots2++;
+            createMelon11();
+        }
+        if (a[0] == melonX12 && b[0] == melonY12) {
+            dots2++;
+            createMelon12();
+        }
+    }
+
+    public void checkCollisions() {
+        for (int i = dots; i > 0; i--) {
+            if (i > 4 && x[0] == x[i] && y[0] == y[i]) {
+                inGame = false;
+            }
+        }
+
+        if (x[0] > LENGTH) {
+            inGame = false;
+        }
+        if (x[0] < 0) {
+            inGame = false;
+        }
+        if (y[0] > HEIGHT) {
+            inGame = false;
+        }
+        if (y[0] < 0) {
+            inGame = false;
+        }
+    }
+
+    public void checkCollisions2() {
+        for (int j = dots2; j > 0; j--) {
+            if (j > 4 && a[0] == a[j] && b[0] == b[j]) {
+                inGame2 = false;
+            }
+        }
+
+        if (a[0] > LENGTH) {
+            inGame2 = false;
+        }
+        if (a[0] < 0) {
+            inGame2 = false;
+        }
+        if (b[0] > HEIGHT) {
+            inGame2 = false;
+        }
+        if (b[0] < 0) {
+            inGame2 = false;
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (inGame) {
+            checkMelons();
+            checkCollisions();
+            move();
+        }
+        if (inGame2) {
+            checkMelons();
+            checkCollisions2();
+            move2();
+        }
+        repaint();
+    }
+
+    class FieldKeyListener extends KeyAdapter {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            super.keyPressed(e);
+            int key = e.getKeyCode();
+            if (key == KeyEvent.VK_LEFT && !right) {
+                left = true;
+                up = false;
+                down = false;
+            }
+            if (key == KeyEvent.VK_RIGHT && !left) {
+                right = true;
+                up = false;
+                down = false;
+            }
+            if (key == KeyEvent.VK_UP && !down) {
+                right = false;
+                up = true;
+                left = false;
+            }
+            if (key == KeyEvent.VK_DOWN && !up) {
+                right = false;
+                down = true;
+                left = false;
+            }
+            if (key == KeyEvent.VK_A && !right2) {
+                left2 = true;
+                up2 = false;
+                down2 = false;
+            }
+            if (key == KeyEvent.VK_D && !left2) {
+                right2 = true;
+                up2 = false;
+                down2 = false;
+            }
+            if (key == KeyEvent.VK_W && !down2) {
+                right2 = false;
+                up2 = true;
+                left2 = false;
+            }
+            if (key == KeyEvent.VK_S && !up2) {
+                right2 = false;
+                down2 = true;
+                left2 = false;
+            }
+        }
+    }
+}

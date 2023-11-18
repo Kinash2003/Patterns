@@ -1,0 +1,1 @@
+console.log(weakset1.has(object1)); 

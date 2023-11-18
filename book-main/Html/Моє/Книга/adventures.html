@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>StartBook</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+ <nav class=" back fixed " role="navigation">
+
+      <ul class="right hide-on-med-and-down">
+        <li><a href="book.html"  class="active"><div class="textlog">Всі книги</div></a></li>
+		<li><a href="ganre.html"><div class="textlog">Жанри</div></a></li>
+		<li><a href="about.html"><div class="textlog">Про нас</div></a></li>
+          <li>     <input id="search waves-effect waves-brown"></li><li><i class="material-icons">search</i>
+            <div class="search-results"></div>
+          </li>
+        	    <li><a class="waves-effect waves-light btn brown lighten-1 modal-trigger" href="#modal1">Я автор</a></li> 
+      </ul>
+	   
+     
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="books.html"><div class="textlog">Всі книги</div></a></li>
+		<li><a href="ganre.html"><div class="textlog">Жанри</div></a></li>
+		<li><a href="about.html"><div class="textlog">Про нас</div></a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="brown lighten-3 button-collapse " width="0px"><i class="material-icons  ">menu</i></a>
+
+<div id="modal1" class="modal">
+<div class="modal-content">
+	<div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate">
+          <label for="first_name">Ім'я</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" type="text" class="validate">
+          <label for="last_name">Прізвище</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="password" type="password" class="validate">
+          <label for="password">Пароль</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+      </div>
+    </form>
+    </div>
+</div>
+<div class="modal-footer">
+<a href="cabinet.html" class="modal-action modal-close waves-effect waves-brown  btn-flat">Зареєструватися</a>
+</div>
+
+    </div>
+	
+	
+  </nav>
+ 
+<header>
+ 
+      <ul id="nav-mobile" class="side-nav side-nav-style back fixed" >
+			<a id="logo-container" href="index.html" target="_blank" class="brand-logo textlogg center">StartBook</a>
+			<li><h3  class="ganre">Виберіть жанр</h3>
+            </li>
+			<li class="bold"><a href="adventures.html" class="collapsible-header waves-effect waves-teal">Пригодницькі</a>
+            </li>
+			<li class="bold"><a href="fantastc.html" class="collapsible-header waves-effect waves-teal">Фантастика</a>
+            </li>
+			<li class="bold"><a href="historical.html" class="collapsible-header waves-effect waves-teal">Історичні</a>
+            </li>
+			<li class="bold"><a href="drama.html" class="collapsible-header waves-effect waves-teal">Драма</a>
+            </li>  
+       </ul>
+    </header>
+<main>
+  <div class="book">
+    <div class="section">
+       <div class="title center"><h2>Нещодавно додані книги</h2></div>
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 l3">
+			<div class="card card-width">
+				<div class="card-image waves-effect waves-block waves-light">
+				  <img class="activator" src="img/140.jpg" >
+				</div>
+				<div class="card-content">
+				  <span class="card-title activator grey-text text-darken-4">140 Децибелів тиші</span>
+				  <p><a target="_blank"  href="140.html">Більше</a></p>
+				</div>
+				<div class="card-reveal">
+				  <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>140 Децибелів тиші</span>
+				  <p>Автор:Бачинський Андрій Михайлович. Народився у місті Калуші на Івано-Франківщині.Закінчив радіо-технічний факультет «Львівської політехніки».
+					</p>	
+				</div>
+			 </div>
+        </div>
+        <div class="col s12 l3">
+			<div class="card card-width">
+				<div class="card-image waves-effect waves-block waves-light">
+				  <img class="activator" src="img/arsen.jpg" >
+				</div>
+				<div class="card-content">
+				  <span class="card-title activator grey-text text-darken-4">Арсен</span>
+				  <p><a target="_blank"  href="arsen.html">Більше</a></p>
+				</div>
+				<div class="card-reveal">
+				  <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i>Арсен</span>
+				  <p>Автор:Роздобудько Ірен Віталіївна.Іре́н Роздобу́дько народилася 3 листопада 1962, Донецьк — українська журналістка, письменниця, сценаристка, поетеса.
+					</p>	
+				</div>
+			 </div>
+        </div>
+          </div>
+        </div>
+	
+      </div>   
+</main>
+   <footer class=" books page-footer  yellow lighten-4 ">
+    <div class="container">
+      <div class="row ">
+        <div class=" col l6 s12">
+          <h3 class="textlog">StartBook</h3>
+          <h5><p class="textlog text-lighten-4">Цей сайт створений для авторів початківців</p> </h5>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="textlog">Підготував</h5>
+          <ul>
+           
+            <li><a class="textlog" href="#!">Kinash Roman</a></li>
+            
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="textlog">Контакти</h5>
+          <ul>
+             <li><a class="textlog" href="#!">startbook@gmail.com </a></li>
+              <li><img src="img/twiter.png" class="img"><img src="img/facebook.png" class="img"><img src="img/wifi.png" class="img"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  	<div class="border_cont-2"></div>
+    <div class="footer-copyright">
+      <div class="container">
+	  <div class="textlog">
+       Made by<a class="textlog text-lighten-3" href=""> Our group</a>
+      </div>
+	   </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  </body>
+</html>

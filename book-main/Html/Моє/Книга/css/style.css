@@ -1,0 +1,171 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+body
+{
+	/*background-color: #fff1a8;*/
+/*background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png");*/
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+background:url(../img/bg.png)no-repeat center;
+background-size:cover;
+background-attachment:fixed;
+}
+.back{
+	background-color: #fff7d1;
+background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+}
+.textlog{
+	color: #A3877C;
+}
+.textlogg{
+	color: #A3877C;
+	font-size:48px;
+	margin-left:20px;
+}
+.right {
+	color: #A3877C;
+}
+.header{
+	color: #464B10 ;
+}
+.nav-mobile{
+	padding-top:65px;
+}
+.collapsible-header 
+{
+	font-size:48px;
+}
+.side-nav-style{
+	position:absolute;
+	z-index:1;
+	width:252px;
+	
+}
+
+.ganre {
+	
+	text-align:center;
+	font-size:30px;
+}
+.overflo{
+	overflow:hidden;
+}
+}
+.sb{
+	background: #A3877C;
+}
+.right {
+	color: #A3877C;
+}
+.header{
+	color: #464B10 ;
+}
+.card-title {
+font-size: 5px;
+	
+}
+.title140{
+	
+ color:#A3877C ;
+}
+.title{
+	
+}
+.ins_shadow{
+	box-shadow:inset -1px -4px 6px 0px rgba(0, 0, 0, 0.2);
+}
+
+.border_cont{
+	border-top:3px solid #A3877C;
+}
+.border_cont-2{
+	border-top:1px dotted #A3877C;
+}
+.info{
+	position:relative;
+	top:7%;
+	font-size:24px;
+	line-height:1.5;
+	
+}
+.flow-text{
+	font-size:30px;
+}
+.titleside{
+	color:#A3877C;
+}
+.titleviynu{
+	color:;
+}
+.titlearsen{
+	color:#A3877C;
+}
+.titlelie{
+	color:#A3877C;
+}
+.titledrem{
+	color:#A3877C;
+}
+.titlebilly{
+	color:#A3877C;
+}
+.sh-text{text-shadow: 1px 2px 2px #0A0A0A;}
+.active{
+	background:rgba(0,0,0,0.1);
+}
+.book{
+    padding-left:270px ;
+     
+}
+.books{
+    padding-left:60px ;
+     
+}
+.size{
+    min-height: 600px;
+}
+.sizemane{
+    min-height: 528px;
+}
+.sizebook{
+    min-height: 528px;
+}
+.more{
+   padding-top: 33px ; 
+}
+.img{
+    margin-right: 11px;
+}
+.text{
+    text-align:justify;
+   font-size: 35px; 
+}
+.textcol{
+    text-align:;
+   font-size: 20px;  
+}
+.backg{
+    width: 100%;
+    height:1000px;
+    background-color: #fff7df;
+}
+.backgtop{
+    height:437px;
+    width: 100%;
+    background-color: #f4ecd2;
+}
+.shadowbottom{
+    box-shadow: inset 0px 6px 6px 0px rgba(0, 0, 0, 0.2);
+}

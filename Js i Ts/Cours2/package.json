@@ -1,0 +1,15 @@
+{
+  "name": "abstract_class",
+  "version": "1.0.0",
+  "main": "abstract_class..js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^4.8.4"
+  }
+}
